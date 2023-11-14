@@ -9,6 +9,17 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh; /* Hauteur complète de la fenêtre de visualisation */
+    background: linear-gradient(-45deg, #dec7bd, #e5a6be, #40b5e0, #a5e0d1,
+                                        #ce9ada, #e5c29e, #929ef1, #62e2f3);
+    background-size: 400% 400%;
+    animation: gradientBG 10s ease infinite;
+}
+
+/* Création d'un dégradé animé qui se déplace en boucle*/
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
 
 * {
@@ -18,7 +29,7 @@ body {
     box-sizing: border-box;
 }
 
-/* centrer horizontalement le contenu du box principal */
+/* Centrer horizontalement le contenu du box principal */
 .container-center-horizontal {
     float: left;
     display: grid;
@@ -28,12 +39,13 @@ body {
     vertical-align: center;
     background: thistle;
     border: 5px dashed #701383;
-    border-radius: 5px;
-    margin: 5px;
     margin: auto; /* Centrage horizontal */
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,1); /* Ombres portées our ajouter de la profondeur */
+    transition: 0.3s; /* Transition sur Hover pour que la carte s'agrandisse légèrement ou change de couleur de fond.*/
+    border-radius: 15px;
 }
 
-/* une grille pour contenir les cartes des utilisateurs */
+/* Une grille pour contenir les cartes des utilisateurs */
 .container-card-box {
     float: left;
     display: grid;
@@ -45,6 +57,9 @@ body {
     border-radius: 5px;
     border: 5px dotted #8b0616;
     margin: auto; /* Centrage horizontal */
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,2); /* Ombres portées our ajouter de la profondeur */
+    transition: 0.3s; /* Transition sur Hover pour que la carte s'agrandisse légèrement ou change de couleur de fond.*/
+    border-radius: 15px;
 }
 
 /* Style pour les cartes d'utilisateurs */
@@ -52,25 +67,103 @@ body {
     width: 350px;
     height: 500px;
     text-align: center;
-    border-radius: 5px;
     padding: 30px;
     background: lightskyblue;
     border: 5px ridge #1428a8;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); /* Ombres portées our ajouter de la profondeur */
+    transition: 0.3s; /* Transition sur Hover pour que la carte s'agrandisse légèrement ou change de couleur de fond.*/
+    border-radius: 15px;
 }
 
-/* Style les photos */
+/* Lors du survol du curseur sur une user card */
+.card-box:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.3);
+    transform: scale(1.05); /* Agrandissement léger */
+    background-color: #f0f8ff; /* Changement de couleur de fond */
+}
+
+/* Style des user photos */
 .card-image {
     width: 100px;
     height: 100px;
     object-fit: contain;
     background-size: cover;
     text-align: center;
+    border-radius: 50%; /* Images rondes */
+    border: 3px solid #ffffff;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2);
 }
 
+/* Lors du survol du curseur sur une card-image */
+.card-image:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.3);
+    transform: scale(1.5); /* Agrandissement léger */
+    background-color: #0b4170; /* Changement de couleur de fond */
+}
+
+/* Bouton scrollUp avec JQuery*/
 #scrollUp {
     position: fixed;
     margin-right: 10px;
     top: 10px;
     right: -100px;
     opacity: 0.5;
+}
+
+/* centrer horinzontalement */
+.container-button {
+    text-align: right;
+}
+
+/* Bouton pour ajouter 10 user cards */
+.bouton {
+    bottom: 1%;
+    right: 1%;
+    z-index: 9999;
+    display: inline-block;
+    background-color: #be424f;
+    border-radius: 35px;
+    border: 9px groove #000000;
+    color: #000000;
+    text-align: center;
+    font-size: 17px;
+    padding: 10px;
+    width: 100px;
+    height: 80px;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+    position: fixed;
+}
+
+.bouton:hover {
+    background-color: goldenrod;
+}
+
+.bouton span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+}
+
+.bouton span:after {
+    content: "\00bb";
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+}
+
+.bouton:hover span {
+    padding-right: 25px;
+}
+
+.bouton:hover span:after {
+    opacity: 1;
+    right: 0;
 }
