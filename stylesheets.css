@@ -10,7 +10,7 @@ body {
 }
 
 * {
-    margin: 0;
+    margin: 10px;
     padding: 0;
     outline: none;
     box-sizing: border-box;
@@ -20,6 +20,7 @@ body {
 .container-center-horizontal {
     text-align: center;
     background: thistle;
+    border: 5px dashed #701383;
 }
 
 /* une grille pour contenir les cartes des utilisateurs */
@@ -28,10 +29,13 @@ body {
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     grid-gap: 20px;
     background: peachpuff;
+    border: 5px dotted #8b0616;
 }
 
 /* centrer horizontalement le card-user */
 #card-user {
     text-align: center;
+    padding: 60px;
     background: lightskyblue;
+    border: 5px ridge #1428a8;
 }
