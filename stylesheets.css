@@ -1,0 +1,37 @@
+body {
+    background: powderblue;
+    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    color: #000;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    height: 100%;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    outline: none;
+    box-sizing: border-box;
+}
+
+/* centrer horizontalement le contenu du box principal */
+.container-center-horizontal {
+    text-align: center;
+    background: thistle;
+}
+
+/* une grille pour contenir les cartes des utilisateurs */
+.cards-users-container-box {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-gap: 20px;
+    background: peachpuff;
+}
+
+/* centrer horizontalement le card-user */
+#card-user {
+    text-align: center;
+    background: lightskyblue;
+}
