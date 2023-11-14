@@ -73,6 +73,25 @@ fetch(url_api_users_cards)
         console.error('Il y a eu un problème avec l\'opération de récupération "fetch" :', error);
     });
 
+// Ajouter un bouton pour scroller vers le haut
+jQuery(function(){
+    $(function () {
+        //Fonction appelée quand on descend la page
+        $(window).scroll(function () {
+
+            // Quand on est à 200pixels du haut de page,
+            if ($(this).scrollTop() > 200 ) {
+
+                // Replace à 10pixels de la droite l'image
+                $('#scrollUp').css('right','10px');
+            }
+            else {
+                // Enlève les attributs CSS affectés par javascript
+                $('#scrollUp').removeAttr( 'style' );
+            }
+        });
+    });
+});
 
 
 
