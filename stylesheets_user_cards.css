@@ -70,7 +70,7 @@
     background: #f3e2f3;
     border: 7px ridge #145e43;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); /* Ombres portées our ajouter de la profondeur */
-    transition: 0.3s; /* Transition sur Hover pour que la carte s'agrandisse légèrement ou change de couleur de fond.*/
+    transition: 0.3s; /* Transition sur Hover pour que la carte s'agrandisse légèrement */
     border-radius: 15px;
 }
 
@@ -91,19 +91,19 @@
     border-radius: 50%; /* Images rondes */
     border: 3px solid #ffffff;
     box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2);
-    animation: heartbeat 3.5s ease-in-out infinite;
-}
-
-/* Animation avec effet "Battements de Cœur" */
-@keyframes heartbeat {
-    0%, 100% { transform: scale(1); }
-    25% { transform: scale(1.1); }
-    50% { transform: scale(1); }
-    75% { transform: scale(1.1); }
 }
 
 /* Lors du survol du curseur sur une card-image */
 .card-image:hover {
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.3);
     background-color: #0b4170; /* Changement de couleur de fond */
+    animation: heartbeat 6s ease-in-out infinite;
+}
+
+/* Animation avec effet "Battements de Cœur" */
+@keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    25% { transform: scale(1.2); }
+    50% { transform: scale(1); }
+    75% { transform: scale(1.2); }
 }
