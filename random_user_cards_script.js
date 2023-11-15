@@ -46,18 +46,19 @@ function add_user_cards(url_api) {
 
                 const user_id = `${user.id.value}`;
                 const user_name = `${user.name.title} ${user.name.first} ${user.name.last}`;
-                console.log("Carte utilisateur:", {user_id} , {user_name});
+                const user_gender = `${user.gender}`;
+                console.log("Carte utilisateur:", {user_id}, {user_name} , {user_gender});
 
                 // Créer la carte de chaque user
                 const cardOfUser =
-                    `<div id="user-${user_id}" class="container-center-horizontal">
+                    `<div id="user-${user_id}" class="user_card_container" data-gender="${user_gender}">
                         <div class="container-card-box">
                             <div class="card-box">
                                 <h2 id="${user_name}"> ${user_name} </h2>
                                 <h3> ${user.login.username} </h3>
                                 <img class="card-image" src="${user.picture.medium}" alt="${user_name} photo">
                                 <div class="card-body">
-                                    <h3> ${user.gender} </h3>
+                                    <h3> ${user_gender} </h3>
                                     <h3> ${user.dob.age} Years Old</h3>
                                     <h4> ${user.email} </h4>
                                     <h3> ☏ ${user.cell} </h3>
@@ -74,7 +75,7 @@ function add_user_cards(url_api) {
                     </div> 
                     `;
                 // Ajouter "user card" au "DOM"
-                document.getElementById("user-card").innerHTML += cardOfUser;
+                document.getElementById("user-cards").innerHTML += cardOfUser;
             });
         })
         // Attraper toutes les erreurs qui peuvent survenir pendant la requête ou le traitement de la réponse
@@ -94,7 +95,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const addButton = document.querySelector('.add-bouton');
 
     // Attacher un gestionnaire d'événement "onclick" : si le bouton est cliqué, la "fonction()" anonyme est exécutée
-    addButton.onclick = function() {
+    addButton.onclick = function () {
         // URL avec 10 user cards
         add_user_cards(url_api_for_10_user_cards);
     };
@@ -103,7 +104,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // Déclaration de la fonction qui supprime une "user card" spécifique suivant l'"id" du "user"
 function remove_user_card(idOfUser) {
     // Sélectionner le conteneur de "user card" à supprimer
-    let user_card_container = document.getElementById(`user-${idOfUser}`);
+    const user_card_container = document.getElementById(`user-${idOfUser}`);
 
     // Vérifier si le conteneur de "user card" existe pour pouvoir le supprimer sinon afficher un message d'erreur
     if (user_card_container) {
@@ -113,21 +114,44 @@ function remove_user_card(idOfUser) {
     }
 }
 
+// Déclaration de la fonction qui filtre suivant le genre
+function filter_gender_user_cards(genderOfUser){
+    // Sélectionner tous les conteneurs de "user cards" suivant leur class "user_card_container"
+    const user_card_containers_list = document.querySelectorAll('.user_card_container');
+
+    // Parcourir toute la liste des "user cards" avec le "forEach"
+    user_card_containers_list.forEach(user_card_container => {
+
+        if (genderOfUser === 'all' || user_card_container.getAttribute('data-gender') === genderOfUser) {
+            // Afficher la "user card"
+            user_card_container.style.display = '';
+        }
+        // Afficher la "user card"
+        else {
+            user_card_container.style.display = 'none';
+        }
+    });
+}
+
+// Écouteur d'événement pour le changement de sélection
+document.getElementById('gender-filter').addEventListener('change', (event) => {
+    filter_gender_user_cards(event.target.value);
+});
+
 // Ajouter un bouton pour scroller vers le haut en utilisant "JQuery"
-jQuery(function(){
+jQuery(function () {
     $(function () {
         //Fonction appelée quand on descend la page
         $(window).scroll(function () {
 
             // Quand on est à 200pixels du haut de page,
-            if ($(this).scrollTop() > 200 ) {
+            if ($(this).scrollTop() > 200) {
 
                 // Replace à 10pixels de la droite l'image
-                $('#scrollUp').css('right','10px');
-            }
-            else {
+                $('#scrollUp').css('right', '10px');
+            } else {
                 // Enlève les attributs CSS affectés par javascript
-                $('#scrollUp').removeAttr( 'style' );
+                $('#scrollUp').removeAttr('style');
             }
         });
     });
