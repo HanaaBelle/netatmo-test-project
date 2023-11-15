@@ -1,4 +1,5 @@
-// Affichage des "user cards" de manière "Random" avec deux fonctionnalités : ajout et suppression des "user cards"
+// Affichage des "user cards" de manière "Random" avec deux fonctionnalités :
+// Ajout de 10 "user cards" et suppression d'une "user card" spécifique
 
 // Affecter à la constante "url_api_for_3_user_cards" l'URL de l'API pour afficher 3 user cards
 const url_api_for_3_user_cards = "https://randomuser.me/api/?results=3"
@@ -99,9 +100,9 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 });
 
-// Déclaration de la fonction qui supprime des "user cards"
+// Déclaration de la fonction qui supprime une "user card" spécifique suivant l'"id" du "user"
 function remove_user_card(idOfUser) {
-    // Sélectionner le conteneur de "user card" à supprimer"
+    // Sélectionner le conteneur de "user card" à supprimer
     let user_card_container = document.getElementById(`user-${idOfUser}`);
 
     // Vérifier si le conteneur de "user card" existe pour pouvoir le supprimer sinon afficher un message d'erreur
