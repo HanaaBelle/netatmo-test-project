@@ -15,11 +15,11 @@ body {
     animation: gradientBG 10s ease infinite;
 }
 
-/* Création d'un dégradé animé qui se déplace en boucle*/
+/* Création d'un dégradé animé qui se déplace en boucle */
 @keyframes gradientBG {
-    0% { background-position: 0% 50%; }
+    0% { background-position: 0 50%; }
     50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+    100% { background-position: 0 50%; }
 }
 
 * {
@@ -38,11 +38,18 @@ body {
     text-align: center;
     vertical-align: center;
     background: thistle;
-    border: 5px dashed #701383;
+    border: 7px dashed #701383;
     margin: auto; /* Centrage horizontal */
     box-shadow: 0 4px 8px 0 rgba(0,0,0,1); /* Ombres portées our ajouter de la profondeur */
     transition: 0.3s; /* Transition sur Hover pour que la carte s'agrandisse légèrement ou change de couleur de fond.*/
     border-radius: 15px;
+    animation: breathing 15s ease-in-out infinite;
+}
+
+/* Animation avec effet de "Respiration" */
+@keyframes breathing {
+    0%, 50% { transform: scale(1); }
+    50% { transform: scale(1.04); }
 }
 
 /* Une grille pour contenir les cartes des utilisateurs */
@@ -50,12 +57,11 @@ body {
     float: left;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    grid-gap: 10px;
+
     padding: 10px;
     text-align: center;
     background: peachpuff;
-    border-radius: 5px;
-    border: 5px dotted #8b0616;
+    border: 7px dotted #8b0616;
     margin: auto; /* Centrage horizontal */
     box-shadow: 0 4px 8px 0 rgba(0,0,0,2); /* Ombres portées our ajouter de la profondeur */
     transition: 0.3s; /* Transition sur Hover pour que la carte s'agrandisse légèrement ou change de couleur de fond.*/
@@ -68,8 +74,8 @@ body {
     height: 500px;
     text-align: center;
     padding: 30px;
-    background: lightskyblue;
-    border: 5px ridge #1428a8;
+    background: #f3e2f3;
+    border: 7px ridge #145e43;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); /* Ombres portées our ajouter de la profondeur */
     transition: 0.3s; /* Transition sur Hover pour que la carte s'agrandisse légèrement ou change de couleur de fond.*/
     border-radius: 15px;
@@ -84,20 +90,28 @@ body {
 
 /* Style des user photos */
 .card-image {
-    width: 100px;
-    height: 100px;
+    width: 130px;
+    height: 130px;
     object-fit: contain;
     background-size: cover;
     text-align: center;
     border-radius: 50%; /* Images rondes */
     border: 3px solid #ffffff;
     box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2);
+    animation: heartbeat 3.5s ease-in-out infinite;
+}
+
+/* Animation avec effet "Battant de Cœur" */
+@keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    25% { transform: scale(1.1); }
+    50% { transform: scale(1); }
+    75% { transform: scale(1.1); }
 }
 
 /* Lors du survol du curseur sur une card-image */
 .card-image:hover {
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.3);
-    transform: scale(1.5); /* Agrandissement léger */
     background-color: #0b4170; /* Changement de couleur de fond */
 }
 
@@ -110,48 +124,67 @@ body {
     opacity: 0.5;
 }
 
-/* centrer horinzontalement */
+/* centrer horizontalement */
 .container-button {
     text-align: right;
 }
 
-/* Bouton pour ajouter 10 user cards */
-.bouton {
+/* Bouton "ADD" pour ajouter 10 user cards */
+.add-bouton {
     bottom: 1%;
     right: 1%;
     z-index: 9999;
     display: inline-block;
-    background-color: #be424f;
-    border-radius: 35px;
-    border: 9px groove #000000;
+    background-color: peachpuff;
+    border-radius: 50px;
+    border: 5px groove #000000;
     color: #000000;
     text-align: center;
     font-size: 17px;
-    padding: 10px;
-    width: 100px;
+    padding: 5px;
+    width: 80px;
     height: 80px;
     -webkit-transition: all 0.5s;
     -moz-transition: all 0.5s;
     -o-transition: all 0.5s;
-    transition: all 0.5s;
+    transition: all 0.2s;
     cursor: pointer;
     margin: 5px;
     position: fixed;
+    animation: floating 6s ease-in-out infinite;
+    transform: scale(1.5); /* Agrandissement léger */
 }
 
-.bouton:hover {
-    background-color: goldenrod;
+/* Animation lors du clique qui réduit la taille du bouton puis le tourne légèrement */
+.add-bouton:active {
+    animation: clickAnimation 0.5s ease;
 }
 
-.bouton span {
+@keyframes clickAnimation {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.8); rotate(10deg); }
+}
+
+/* Animation avec effet de Flottement */
+@keyframes floating {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.add-bouton:hover {
+    background-color: thistle;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.3);
+}
+
+.add-bouton span {
     cursor: pointer;
     display: inline-block;
     position: relative;
     transition: 0.5s;
 }
 
-.bouton span:after {
-    content: "\00bb";
+.add-bouton span:after {
+    /* content: "\00bb";*/
     position: absolute;
     opacity: 0;
     top: 0;
@@ -159,11 +192,29 @@ body {
     transition: 0.5s;
 }
 
-.bouton:hover span {
+.add-bouton:hover span {
     padding-right: 25px;
 }
 
-.bouton:hover span:after {
+.add-bouton:hover span:after {
     opacity: 1;
     right: 0;
+}
+
+/* Bouton "Remove" pour supprimer une user card */
+.remove-bouton {
+    position: relative;
+    text-align: center;
+    margin: auto;
+    vertical-align: center;
+    padding: 3px;
+    background: powderblue;
+    border-radius: 50px;
+    border: 3px ridge #145e43;
+}
+
+.remove-bouton:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.3);
+    transform: scale(1.07); /* Agrandissement léger */
+    background-color: #e38e98; /* Changement de couleur de fond */
 }
