@@ -1,5 +1,7 @@
-// Affichage des "user cards" de manière "Random" avec deux fonctionnalités :
-// Ajout de 10 "user cards" et suppression d'une "user card" spécifique
+// Affichage des "user cards" de manière "Random" avec trois fonctionnalités :
+// Ajout de 10 "user cards"
+// Suppression d'une "user card" spécifique
+// Filtre de genre
 
 // Affecter à la constante "url_api_for_3_user_cards" l'URL de l'API pour afficher 3 user cards
 const url_api_for_3_user_cards = "https://randomuser.me/api/?results=3"
@@ -126,7 +128,7 @@ function filter_gender_user_cards(genderOfUser){
             // Afficher la "user card"
             user_card_container.style.display = '';
         }
-        // Afficher la "user card"
+        // Cacher la "user card"
         else {
             user_card_container.style.display = 'none';
         }
