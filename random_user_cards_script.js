@@ -1,57 +1,60 @@
 // Affichage des "user cards" de manière "Random" avec trois fonctionnalités :
-// Ajout de 10 "user cards"
-// Suppression d'une "user card" spécifique
-// Filtre de genre
+// -> Ajout de 10 "user cards"
+// -> Suppression d'une "user card" spécifique
+// -> Filtre de genre
 
-// Affecter à la constante "url_api_for_3_user_cards" l'URL de l'API pour afficher 3 user cards
+// Affecter à la constante "url_api_for_3_user_cards" l'URL de l'API pour afficher 3 "user cards"
 const url_api_for_3_user_cards = "https://randomuser.me/api/?results=3"
 
-// Affecter à la constante "url_api_for_10_user_cards" l'URL de l'API pour afficher 10 user cards
+// Affecter à la constante "url_api_for_10_user_cards" l'URL de l'API pour afficher 10 "user cards"
 const url_api_for_10_user_cards = "https://randomuser.me/api/?results=10"
 
 // Déclaration de la fonction qui ajoute des "user cards"
 function add_user_cards(url_api) {
-// Initialiser la requête "HTTP GET" avec la méthode "fetch" qui est appelé avec "url_api_users_cards", qui renvoie
-// ensuite une promesse qui se résout en un objet "response" qui représente la réponse à cette requête
+// Initialiser la requête "HTTP GET" avec la méthode "fetch" qui est appelée avec "url_api" et qui renvoie ensuite une
+// promesse qui se résout en un objet "response" représentant la réponse à cette requête
     fetch(url_api)
 
-        // Dès que la promesse retournée par "fetch" est résolue, la méthode ".then()" sera appelée et la fonction de rappel
-        // "callback" sera passée à cette méthode avec l'objet "response"
+        // Dès que la promesse retournée par "fetch" est résolue, la méthode ".then()" sera appelée et la fonction de
+        // rappel "callback" sera passée à cette méthode avec l'objet "response"
         .then(response => {
 
-            // Traiter la "response" en vérifiant qu'il n'y a pas d'erreur "HTTP" avec un booléen qui indique si la réponse
-            // est OK (status HTTP 200-299)
+            // Traiter la "response" en vérifiant qu'il n'y a pas d'erreur "HTTP" avec un booléen qui indique si la
+            // réponse est OK donc "Correcte" (status HTTP 200-299)
             if (response.ok) {
 
-                // Convertir la réponse en "JSON", cela renvoie une promesse, qui est résolue avec le résultat du JSON parsé
+                // Convertir la réponse en "JSON", cela renvoie une promesse, qui est résolue avec le résultat du "JSON"
+                // "parsé"
                 return response.json();
             }
 
-            // S'il y a une erreur HTTP, une erreur est lancée
+            // S'il y a une erreur "HTTP" alors une erreur sera lancée sinon le processus continu
             throw new Error('La réponse du réseau n\'est pas Ok !' + response.statusText);
         })
 
-        // Manipulation des données JSON après la conversion une fonction de rappel "callback" est appelée
+        // Manipulation des données "JSON" après la conversion et donc une fonction de rappel "callback" est appelée
         .then(data => {
 
-            // "data" est la variable contenant la réponse JSON de l'API
+            // "data" est la variable contenant la réponse "JSON" de l'API
             console.log("DATA", data);
 
             // Créer une liste des noms des utilisateurs à partir du tableau "data.results"
             const users_list = data.results;
 
-            // Afficher la liste des users en accédant à "results" de la "data"
+            // Afficher la liste des "users" en accédant à "results" de la "data"
             console.log("Listes des utilisateurs", users_list);
 
-            // Parcourir chaque utilisateur à partir de la liste des users avec le "forEach" et afficher ses informations
+            // Parcourir chaque utilisateur à partir de la liste des "users" avec le "forEach" et afficher les
+            // informations de chaque "user" dans une "user card"
             users_list.forEach(user => {
 
+                // Récupérer les données de chaque "user" et les afficher
                 const user_id = `${user.id.value}`;
                 const user_name = `${user.name.title} ${user.name.first} ${user.name.last}`;
                 const user_gender = `${user.gender}`;
                 console.log("Carte utilisateur:", {user_id}, {user_name} , {user_gender});
 
-                // Créer la carte de chaque user
+                // Créer la carte de chaque "user" contenant ses informations récupérées
                 const cardOfUser =
                     `<div id="user-${user_id}" class="user_card_container" data-gender="${user_gender}">
                         <div class="container-card-box">
@@ -76,7 +79,8 @@ function add_user_cards(url_api) {
                         </div> 
                     </div> 
                     `;
-                // Ajouter "user card" au "DOM"
+
+                // Ajouter chaque "user card" au "DOM"
                 document.getElementById("user-cards").innerHTML += cardOfUser;
             });
         })
@@ -86,12 +90,12 @@ function add_user_cards(url_api) {
         });
 }
 
-// Appel de la fonction qui affiche 3 user cards
+// Appel de la fonction qui affiche 3 "user cards"
 add_user_cards(url_api_for_3_user_cards);
 
-// Bouton pour afficher 10 "user cards" et 'DOMContentLoaded' pour s'assurer que le code JS ne s'exécute qu'après
-// le chargement complet du contenu de la page web et que l'élément bouton est disponible pour y attacher l'événement
-// "onclick"
+// Gérer le bouton "ADD" qui affiche 10 "user cards" avec la méthode 'DOMContentLoaded' pour s'assurer que le code JS ne
+// s'exécute qu'après le chargement complet du contenu de la page web et que le bouton est disponible pour y attacher
+// l'événement "onclick"
 document.addEventListener('DOMContentLoaded', () => {
     // Sélectionner le bouton "ADD" dans le document avec sa classe ".add-bouton"
     const addButton = document.querySelector('.add-bouton');
@@ -118,12 +122,14 @@ function remove_user_card(idOfUser) {
 
 // Déclaration de la fonction qui filtre suivant le genre
 function filter_gender_user_cards(genderOfUser){
-    // Sélectionner tous les conteneurs de "user cards" suivant leur class "user_card_container"
-    const user_card_containers_list = document.querySelectorAll('.user_card_container');
+    // Sélectionner tous les conteneurs des "user cards" suivant leur class "user_card_container"
+    const user_cards_containers_list = document.querySelectorAll('.user_card_container');
 
     // Parcourir toute la liste des "user cards" avec le "forEach"
-    user_card_containers_list.forEach(user_card_container => {
+    user_cards_containers_list.forEach(user_card_container => {
 
+        // Vérifier si le genre sélectionné (genderOfUser) est 'all' ou si le genre de la "user card" actuelle
+        // (user_card_container) correspond au genre sélectionné (genderOfUser)
         if (genderOfUser === 'all' || user_card_container.getAttribute('data-gender') === genderOfUser) {
             // Afficher la "user card"
             user_card_container.style.display = '';
@@ -146,13 +152,13 @@ jQuery(function () {
         //Fonction appelée quand on descend la page
         $(window).scroll(function () {
 
-            // Quand on est à 200pixels du haut de page,
+            // Quand on est à 200 pixels du haut de page,
             if ($(this).scrollTop() > 200) {
 
-                // Replace à 10pixels de la droite l'image
+                // Remplace à 10 pixels de la droite de l'image
                 $('#scrollUp').css('right', '10px');
             } else {
-                // Enlève les attributs CSS affectés par javascript
+                // Enlève les attributs CSS affectés par JS (cacher le bouton)
                 $('#scrollUp').removeAttr('style');
             }
         });
