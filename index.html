@@ -17,13 +17,29 @@
 </head>
 <body>
 
-<!-- Menu déroulant pour le filtre -->
-<label for="gender-filter" class="visually-hidden">Select Gender</label>
-<select id="gender-filter">
-    <option value="all">All</option>
-    <option value="female">Woman</option>
-    <option value="male">Man</option>
-</select>
+<!-- Conteneur pour les filtres -->
+<div class="filters-container">
+
+    <!-- Menu déroulant pour le filtre par genre -->
+    <div class="filter">
+        <label for="gender-filter" class="filter-label">Gender</label>
+        <select id="gender-filter" class="filter-select">
+            <option value="all">All</option>
+            <option value="female">Woman</option>
+            <option value="male">Man</option>
+        </select>
+    </div>
+
+    <!-- Menu déroulant pour classer par date de naissance -->
+    <div class="filter">
+        <label for="birthDate-filter" class="filter-label">Birth Date Sort</label>
+        <select id="birthDate-filter" class="filter-select">
+            <option value="all">All</option>
+            <option value="ascending">Ascending</option>
+            <option value="descending">Descending</option>
+        </select>
+    </div>
+</div>
 
 <!-- Bouton pour scroller vers le haut -->
 <div id="scrollUp">
@@ -40,6 +56,14 @@
     <button class="add-bouton" type="button">
         <span>Add ✚10</span>
     </button>
+</div>
+
+<!-- Footer -->
+<div class="copyright">
+    Designed by:
+    <a class="email" href="mailto:hanaabelhamidi@gmail.com">
+        Hanâa Belhamidi Fullstack Software Engineer
+    </a>
 </div>
 
 <script src="random_user_cards_script.js"></script>

@@ -40,50 +40,47 @@ body {
 }
 
 /* Centrer horizontalement le conteneur du sélecteur de genre */
-.container-gender-filter {
+.filters-container {
+    display: flex;
+    justify-content: center;
     text-align: center;
 }
 
 /* Sélecteur de genre avec une animation à effet de flottement */
-#gender-filter {
+.filter-select {
+    width: 150px;
+    border: none; /* Bordure plus subtile */
+    cursor: pointer;
     display: inline-block;
     align-items: center;
     justify-content: center;
-    padding: 10px;
-    width: 150px;
-    height: 50px;
-    cursor: pointer;
-    margin: 15px;
+    height: 40px;
     background-color: #83b0e8;
     background-image: linear-gradient(45deg, #913939, #f1c1f1);
     border-radius: 30px;
-    border: none;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
-    font-size: 19px;
+    font-size: 16px; /* Taille de police ajustée */
     color: white;
     transition: all 0.3s ease;
     text-transform: uppercase;
     letter-spacing: 1px;
-    animation: floating 6s ease-in-out infinite;
+    animation: floating 6s ease-in-out infinite; /* Durée d'animation réduite */
 }
 
 /* Changement de couleurs lors du survol et clique sur le sélecteur */
-#gender-filter:hover, #gender-filter:focus {
+.filter-select:hover, .filter-select:focus {
     background-image: linear-gradient(45deg, #134b88, #83b0e8);
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
-    transform: scale(1.1);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4); /* Ombre plus marquée */
+    transform: scale(1.05); /* Effet de survol moins exagéré */
 }
 
 /* Cacher le label visuellement mais le garder lisible pour améliorer l'accessibilité */
-.visually-hidden {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    margin: -1px;
-    padding: 0;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    border: 0;
+.filter-label, .copyright {
+    display: flex;
+    font-weight: bolder;
+    text-align: center;
+    letter-spacing: 1px;
+    font-size: 16px;
 }
 
 /* Bouton scrollUp avec JQuery*/
