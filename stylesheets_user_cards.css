@@ -1,3 +1,4 @@
+/* Centrer horizontalement le conteneur de toute la grille des "user cards" */
 #user-cards{
     display: flex;
     flex-flow: wrap;
@@ -6,7 +7,7 @@
     align-items: center;
 }
 
-/* Centrer horizontalement le conteneur du box principal des "user cards" */
+/* Centrer horizontalement le conteneur d'une "user card" */
 .user_card_container {
     justify-content: center;
     align-items: center;
@@ -18,7 +19,6 @@
     background: thistle;
     cursor: pointer;
     border: 7px dashed #701383;
-
     box-shadow: 0 4px 8px 0 rgba(0,0,0,1); /* Ombres portées our ajouter de la profondeur */
     transition: 0.3s; /* Transition sur Hover pour que la carte s'agrandisse légèrement ou change de couleur de fond.*/
     border-radius: 15px;
@@ -42,7 +42,7 @@
     }
 }
 
-/* Une grille pour contenir les "user cards" */
+/* Un autre conteneur décoratif pour contenir le conteneur d'une "user card" */
 .container-card-box {
     display: inline-block;
     grid-gap: 1px;
@@ -56,12 +56,12 @@
     background: peachpuff;
     border: 7px dotted #8b0616;
     margin: auto; /* Centrage horizontal */
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,2); /* Ombres portées our ajouter de la profondeur */
-    transition: 0.3s; /* Transition sur Hover pour que la carte s'agrandisse légèrement ou change de couleur de fond.*/
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,2); /* Ombres portées pour ajouter de la profondeur */
+    transition: 0.3s; /* Transition sur Hover pour que la carte s'agrandisse légèrement */
     border-radius: 15px;
 }
 
-/* Style pour les user cards */
+/* Style pour une "user card" */
 .card-box {
     width: 350px;
     height: auto;
@@ -69,19 +69,19 @@
     padding: 10px;
     background: #f3e2f3;
     border: 7px ridge #145e43;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); /* Ombres portées our ajouter de la profondeur */
-    transition: 0.3s; /* Transition sur Hover pour que la carte s'agrandisse légèrement */
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
     border-radius: 15px;
 }
 
-/* Lors du survol du curseur sur une user card */
+/* Lors du survol du curseur sur une "user card" */
 .card-box:hover {
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.3);
     transform: scale(1.05); /* Agrandissement léger */
     background-color: #f0f8ff; /* Changement de couleur de fond */
 }
 
-/* Style des "user photos" */
+/* Style pour une "user photo" */
 .card-image {
     width: 130px;
     height: 130px;
@@ -93,14 +93,14 @@
     box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2);
 }
 
-/* Lors du survol du curseur sur une card-image */
+/* Lors du survol du curseur sur une "user photo" */
 .card-image:hover {
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.3);
-    background-color: #0b4170; /* Changement de couleur de fond */
+    background-color: #0b4170;
     animation: heartbeat 6s ease-in-out infinite;
 }
 
-/* Animation avec effet "Battements de Cœur" */
+/* Animation avec effet de "Battements de Cœur" */
 @keyframes heartbeat {
     0%, 100% { transform: scale(1); }
     25% { transform: scale(1.2); }
