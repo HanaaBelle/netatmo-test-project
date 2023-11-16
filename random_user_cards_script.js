@@ -52,11 +52,13 @@ function add_user_cards(url_api) {
                 const user_id = `${user.id.value}`;
                 const user_name = `${user.name.title} ${user.name.first} ${user.name.last}`;
                 const user_gender = `${user.gender}`;
-                console.log("Carte utilisateur:", {user_id}, {user_name} , {user_gender});
+                const user_birthdate = `${user.dob.date}`;
+                console.log("Carte utilisateur:", {user_id}, {user_name}, {user_gender}, {user_birthdate});
 
                 // Créer la carte de chaque "user" contenant ses informations récupérées
                 const cardOfUser =
-                    `<div id="user-${user_id}" class="user_card_container" data-gender="${user_gender}">
+                    `<div id="user-${user_id}" class="user_card_container" 
+                          data-gender="${user_gender}" data-birthdate="${user_birthdate}">
                         <div class="container-card-box">
                             <div class="card-box">
                                 <h2 id="${user_name}"> ${user_name} </h2>
@@ -82,6 +84,9 @@ function add_user_cards(url_api) {
 
                 // Ajouter chaque "user card" au "DOM"
                 document.getElementById("user-cards").innerHTML += cardOfUser;
+
+                // Appel de la fonction pour trier la liste des users
+                // users_birthDates_sorter(users_list, user_birthdate);
             });
         })
         // Attraper toutes les erreurs qui peuvent survenir pendant la requête ou le traitement de la réponse
@@ -121,7 +126,7 @@ function remove_user_card(idOfUser) {
 }
 
 // Déclaration de la fonction qui filtre suivant le genre
-function filter_gender_user_cards(genderOfUser){
+function filter_gender_user_cards(genderOfUser) {
     // Sélectionner tous les conteneurs des "user cards" suivant leur class "user_card_container"
     const user_cards_containers_list = document.querySelectorAll('.user_card_container');
 
@@ -141,9 +146,52 @@ function filter_gender_user_cards(genderOfUser){
     });
 }
 
-// Écouteur d'événement pour le changement de sélection
+// Écouteur d'événement pour le changement de sélection du genre
 document.getElementById('gender-filter').addEventListener('change', (event) => {
     filter_gender_user_cards(event.target.value);
+});
+
+// Déclaration de la fonction qui classifie les "user cards" suivant la date de naissance des users
+function users_birthDates_sorter(typeOfSort) {
+
+    // Sélectionner tous les conteneurs des "user cards" suivant leur class "user_card_container" dans une liste de
+    // nœuds puis la convertir en tableau
+    const user_cards_containers_list = Array.from(document.querySelectorAll('.user_card_container'));
+
+    // Trier le tableau des conteneurs des user cards en fonction du type de tri (croissant ou décroissant)
+    user_cards_containers_list.sort((birthdateOfUser_a, birthdateOfUser_b) => {
+
+        // Récupérer les dates de naissance des deux "user cards" à comparer
+        let birthdateOfUserA = new Date(birthdateOfUser_a.getAttribute('data-birthdate'));
+        let birthdateOfUserB = new Date(birthdateOfUser_b.getAttribute('data-birthdate'));
+
+        // Comparer les dates en fonction du type de tri sélectionné
+        if (typeOfSort === 'ascending') {
+            // Tri par ordre croissant
+            return birthdateOfUserB - birthdateOfUserA;
+
+        } else if (typeOfSort === 'descending') {
+            // Tri par ordre décroissant
+            return birthdateOfUserA - birthdateOfUserB;
+        }
+    });
+
+    // Mettre à jour l'affichage en fonction de l'ordre de classification (soit croissant ou décroissant) en récupérant
+    // le conteneur des "user cards" où elles sont affichées
+    const containerOfUserCards = document.getElementById("user-cards");
+
+    // Effacer le conteneur existant des "user cards" non triées
+    containerOfUserCards.innerHTML = '';
+
+    // Ajouter au conteneur les "user cards" triées
+    user_cards_containers_list.forEach(user_card_container => {
+        containerOfUserCards.appendChild(user_card_container);
+    });
+}
+
+// Écouteur d'événement pour le changement de sélection du tri par date de naissance
+document.getElementById('birthDate-filter').addEventListener('change', (event) => {
+    users_birthDates_sorter(event.target.value);
 });
 
 // Ajouter un bouton pour scroller vers le haut en utilisant "JQuery"
