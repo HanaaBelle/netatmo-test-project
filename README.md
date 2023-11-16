@@ -1,4 +1,4 @@
-# Objectif du projet Netatmo:
+# Objectif du projet Netatmo : "Fait en un jour et demi" en ("vanilla") HTML/CSS/JS 
 Créez un projet fonctionnel qui accède et affiche les données API du générateur d'utilisateurs aléatoires.
 
 ## Description
@@ -13,7 +13,7 @@ Votre application doit s'intégrer à l'API présentée sur le site Random User 
 Exemple d'une fiche, telle que vue sur le site 
 (rappel : nous souhaitons que vous en affichiez plusieurs sur une même page) :
 
-### Quelques points à noter :
+### Quelques points à noter
 Utilisez n'importe quel framework avec lequel vous souhaitez créer le projet. Tant qu’on peut le faire fonctionner, 
 c’est bien ! Vous souhaiterez peut-être inclure un fichier README avec des instructions pour exécuter le projet.
 Profitez de cette occasion pour nous montrer vos compétences en design et amusez-vous avec le design ! 
