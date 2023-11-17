@@ -15,8 +15,9 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh; /* Hauteur complète de la fenêtre de visualisation */
-    background: linear-gradient(-45deg, #dec7bd, #e5a6be, #40b5e0, #a5e0d1,
-                                        #ce9ada, #e5c29e, #929ef1, #62e2f3);
+    background: linear-gradient(-45deg, #dec7bd, #e5a6be, #e5c29e,
+                                        #e6b7f1, #adb4e8, #b2ead4
+                               );
     background-size: 400% 400%;
     animation: gradientBG 10s ease infinite;
 }
